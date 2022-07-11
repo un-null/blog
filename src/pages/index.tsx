@@ -13,7 +13,7 @@ const Home: NextPage<Props> = (props) => {
       <ul>
         {props.contents.map((content) => (
           <li key={content.id}>
-            <Link href={`/`}>
+            <Link href={`/blog/${content.id}`}>
               <a>{content.title}</a>
             </Link>
           </li>
