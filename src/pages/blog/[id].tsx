@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { Layout } from "../../components/Layout";
 import { client } from "../../libs/client";
 import { Blog } from "../../types";
 
@@ -8,16 +9,16 @@ type Props = Blog & MicroCMSContentId & MicroCMSDate;
 
 const BlogId: NextPage<Props> = (props) => {
   return (
-    <div>
-      <h1>{props.title}</h1>
-      <time dateTime={props.publishedAt}>
+    <Layout label={props.title}>
+      <h1 className="text-3xl font-bold text-center">{props.title}</h1>
+      <time dateTime={props.publishedAt} className="text-center mt-4 block">
         {dayjs(props.publishedAt).format("YYYY年MM月DD日")}
       </time>
       <article
-        className="prose prose-sm"
+        className="prose prose-sm mt-8"
         dangerouslySetInnerHTML={{ __html: props.body }}
       />
-    </div>
+    </Layout>
   );
 };
 
